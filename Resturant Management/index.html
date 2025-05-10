@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Management System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fffdf9;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            color: #3a3a3a;
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid #f6c4b5;
+        }
+        .section {
+            padding: 2rem;
+            background-color: #fefcfb;
+        }
+        h2 {
+            border-bottom: 2px solid #ffa07a;
+            padding-bottom: 0.5rem;
+            color: #ff5722;
+        }
+        .menu-category {
+            margin-bottom: 2rem;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #fff0e6;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(255, 183, 149, 0.3);
+            transition: transform 0.2s;
+        }
+        .menu-item:hover {
+            transform: scale(1.02);
+        }
+        .menu-item img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 1rem;
+        }
+        .menu-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+        button {
+            background: #ff7043;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #e18560;
+        }
+        button:active{
+            background-color: #ccc;
+        }
+        #order-summary {
+            background: #fffaf0;
+            padding: 2rem;
+            margin: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(255, 193, 143, 0.3);
+        }
+        #pay-btn {
+            margin-top: 1rem;
+            background: #00bcd4;
+        }
+        #pay-btn:hover {
+            background: #0097a7;
+        }
+        #rating-section {
+            background-color: #fff3e0;
+            padding: 2rem;
+            margin: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(255, 183, 149, 0.4);
+        }
+        #rating-section label {
+            font-size: 1.2rem;
+            margin-right: 1rem;
+        }
+        #rating-section select, #rating-section textarea, #rating-section button {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 1rem;
+        }
+        #submit-rating {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+        }
+        #submit-rating:hover {
+            background-color: #f57c00;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Delicious Bites</h1>
+        <p>Enjoy our wide selection of Indian vegetarian dishes!</p>
+    </header>
+
+    <div class="section" id="menu">
+        <h2>Starters</h2>
+        <div class='menu-item'><div class='menu-info'><img src='./samosa.jpg' alt='Samosa'><span>Samosa - ₹39</span></div><button onclick="addToOrder('Samosa', 39)">Add</button></div>
+        <div class='menu-item'><div class='menu-info'><img src='./dhokla.jpg' alt='Dhokla'><span>Dhokla - ₹49</span></div><button onclick="addToOrder('Dhokla', 49)">Add</button></div>
+        <div class='menu-item'><div class='menu-info'><img src='./paneer tika.jpg' alt='Paneer Tikka'><span>Paneer Tikka - ₹79</span></div><button onclick="addToOrder('Paneer Tikka', 79)">Add</button></div>
+        <div class='menu-item'><div class='menu-info'><img src='./momos.jpg' alt='Momos'><span>Momos - ₹59</span></div><button onclick="addToOrder('Momos', 59)">Add</button></div>
+        <div class='menu-item'><div class='menu-info'><img src='./kabab.jpg' alt='Veg kabab'><span>Veg Kabab - ₹69</span></div><button onclick="addToOrder('Hara Bhara Kebab', 69)">Add</button></div>
+        <div class='menu-item'><div class='menu-info'><img src='./corn pako.jpg' alt=' Cryspi Corn'><span>Cryspi  Corn - ₹55</span></div><button onclick="addToOrder('Corn Tikki', 55)">Add</button></div>
+        <!-- Additional 20 starter items here -->
+        <div class='menu-item'><div class='menu-info'><img src='./paneer pako.jpg' alt='Paneer Pakora'><span>Paneer Pakora - ₹65</span></div><button onclick="addToOrder('Paneer Pakora', 65)">Add</button></div>
+        <div class='menu-item'><div class='menu-info'><img src='./panipuri.jpg' alt='Veg Spring Roll'><span>Pani Puri - ₹50</span></div><button onclick="addToOrder('Pani Puri', 50)">Add</button></div>
+        <!-- Add 18 more like above... -->
+
+        <h2>Main Course</h2>
+        <div class='menu-item'><div class='menu-info'><img src='./vegbiryani.jpg' alt='Veg Biriyani'><span>Veg Biriyani - ₹129</span></div><button onclick="addToOrder('Veg Biriyani', 129)">Add</button></div>
+        <div class='menu-item'><div class='menu-info'><img src='./cholebature.webp' alt='Chole Bhature'><span>Chole Bhature - ₹179</span></div><button onclick="addToOrder('Chole Bhature', 179)">Add</button></div>
+        <div class='menu-item'><div class='menu-info'><img src='./rajmachal.jpeg' alt='Rajma Masala'><span>Rajma Chawal - ₹170</span></div><button onclick="addToOrder('Rajma Masala', 170)">Add</button></div>
+        <div class='menu-item'><div class='menu-info'><img src='./palangpnr.jpg' alt='Palak Paneer'><span>Palak Paneer - ₹139</span></div><button onclick="addToOrder('Palak Paneer', 139)">Add</button></div>
+        <div class='menu-item'><div class='menu-info'><img src='./dalmkhni.webp' alt='Dal Makhani'><span>Dal Makhani - ₹150</span></div><button onclick="addToOrder('Dal Makhani', 150)">Add</button></div>
+        <div class='menu-item'><div class='menu-info'><img src='./pnrbttr.jpg' alt='Paneer Butter Masala'><span>Paneer Butter Masala - ₹180</span></div><button onclick="addToOrder('Paneer Butter Masala', 180)">Add</button></div>
+        
+        <div class='menu-item'><div class='menu-info'><img src='./alukobi.webp' alt='Alu Kobi'><span>Alu Kobi - ₹139</span></div><button onclick="addToOrder('Alu Kobi', 139)">Add</button></div>
+        
+        <div class='menu-item'><div class='menu-info'><img src='./kopta.webp' alt='PVeg Kopta'><span>Veg Kopta - ₹180</span></div><button onclick="addToOrder('Veg Kopta', 180)">Add</button></div>
+        <!-- Add more main course items here... -->
+
+        <h2>Drinks</h2>
+        <div class='menu-item'><div class='menu-info'><img src='./lasi.webp' alt='Lassi'><span>Lassi - ₹50</span></div><button onclick="addToOrder('Lassi', 50)">Add</button></div>
+        <div class='menu-item'><div class='menu-info'><img src='./Masala-Chaas-Recipe.webp' alt='Masala Chaas'><span>Masala Chaas - ₹40</span></div><button onclick="addToOrder('Masala Chaas', 40)">Add</button></div>
+          
+        <div class='menu-item'><div class='menu-info'><img src='./cocktail.jpg' alt='Cocktail'><span>Cocktail - ₹50</span></div><button onclick="addToOrder('Cocktail', 50)">Add</button></div>
+        <div class='menu-item'><div class='menu-info'><img src='./tea.jpg' alt='Tea'><span>Tea - ₹40</span></div><button onclick="addToOrder('Tea', 40)">Add</button></div>
+        <div class='menu-item'><div class='menu-info'><img src='./cofee.jpg' alt='Cofee'><span>Cofee - ₹50</span></div><button onclick="addToOrder('cofee', 50)">Add</button></div>
+        <!-- Add more drink items here... -->
+    </div>
+
+    <div class="section" id="order-summary">
+        <h2>Order Summary</h2>
+        <ul id="order-list"></ul>
+        <p>Total: ₹<span id="total-amount">0</span></p>
+        <button id="pay-btn" onclick="payBill()">Pay Now</button>
+    </div>
+
+    <div class="section" id="rating-section">
+        <h2>Rate Your Experience</h2>
+        <label for="rating">Your Rating:</label>
+        <select id="rating">
+            <option value="">Select</option>
+            <option value="5">★★★★★ - Excellent</option>
+            <option value="4">★★★★ - Very Good</option>
+            <option value="3">★★★ - Good</option>
+            <option value="2">★★ - Fair</option>
+            <option value="1">★ - Poor</option>
+        </select>
+        <br>
+        <textarea id="feedback" rows="4" placeholder="Leave your feedback here..."></textarea>
+        <br>
+        <button id="submit-rating" onclick="submitRating()">Submit Rating</button>
+    </div>
+  <script>
+    let total = 0;
+
+    function addToOrder(item, price) {
+        const orderList = document.getElementById("order-list");
+        const li = document.createElement("li");
+        li.textContent = `${item} - ₹${price}`;
+        li.setAttribute('data-price', price);
+
+        // Create remove button
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "Remove";
+        removeBtn.style.marginLeft = "10px";
+        removeBtn.style.backgroundColor = "#e53935";
+        removeBtn.style.color = "white";
+        removeBtn.style.border = "none";
+        removeBtn.style.borderRadius = "3px";
+        removeBtn.style.cursor = "pointer";
+
+        removeBtn.onclick = function () {
+            const itemPrice = parseInt(li.getAttribute('data-price'));
+            total -= itemPrice;
+            document.getElementById("total-amount").textContent = total;
+            orderList.removeChild(li);
+        };
+
+        li.appendChild(removeBtn);
+        orderList.appendChild(li);
+
+        total += price;
+        document.getElementById("total-amount").textContent = total;
+    }
+
+    function payBill() {
+        if (total === 0) {
+            alert("Your cart is empty!");
+        } else {
+            alert("Payment successful! Thank you for your order.");
+            document.getElementById("order-list").innerHTML = "";
+            total = 0;
+            document.getElementById("total-amount").textContent = total;
+        }
+    }
+
+    function submitRating() {
+        const rating = document.getElementById("rating").value;
+        const feedback = document.getElementById("feedback").value;
+        if (!rating) {
+            alert("Please select a rating before submitting.");
+            return;
+        }
+        alert(`Thank you for your rating of ${rating} stars!\nYour feedback: ${feedback}`);
+        document.getElementById("rating").value = "";
+        document.getElementById("feedback").value = "";
+    }
+</script>
+
+
+</body>
+</html>
